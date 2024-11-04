@@ -41,7 +41,6 @@ int main()
         else
         {
             cout << "Ukuran kaleng tidak terdata!" << endl;
-            return 1;
         }
     }
     else if (Ksusu == 'B')
@@ -61,7 +60,6 @@ int main()
         else
         {
             cout << "Ukuran kaleng tidak terdata!" << endl;
-            return 1;
         }
     }
     else if (Ksusu == 'C')
@@ -81,13 +79,11 @@ int main()
         else
         {
             cout << "Ukuran kaleng tidak terdata!" << endl;
-            return 1;
         }
     }
     else
     {
         cout << "Kode jenis susu tidak terdata!" << endl;
-        return 1;
     }
 
     totalBayar = HarperKaleng * jumlahBeli;
