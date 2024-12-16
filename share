@@ -1,0 +1,18 @@
+print("=== Program Input Nilai Mahasiswa ===")
+banyakmhs = int(input("Masukkan jumlah mahasiswa: "))
+
+for m in range(banyakmhs):
+    print(f"Mahasiswa ke-{m + 1}")
+    nama = input("Nama: ")
+    nim = input("NIM: ")
+    banyakmk = int(input("Jumlah mata kuliah: "))
+    
+    total_nilai = 0
+    for n in range(banyakmk):
+        nilai = float(input(f"Nilai mata kuliah ke-{n + 1}: "))
+        total_nilai += nilai
+    
+    rata_rata = total_nilai / banyakmk
+    print(f"Rata-rata nilai: {rata_rata:.2f}")
+
+print("Program selesai!")
