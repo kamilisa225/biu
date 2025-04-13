@@ -4,7 +4,7 @@ public class QuizApp {
     public static void main(String[] args) throws InterruptedException {
         Scanner input = new Scanner(System.in);
 
-        System.out.println("=== Selamat datang di Kuis Pengetahuan Umum! ===");
+        System.out.println("\n=== Selamat datang di Kuis Pengetahuan Umum! ===");
 
         // Input Nama dan Kelas
         System.out.print("Masukkan Nama kamu: ");
