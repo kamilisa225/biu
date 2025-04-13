@@ -13,16 +13,16 @@ public class QuizApp {
         String kelas = input.nextLine();
 
         String[] soal = {
-                "1. Siapa mahasiswa TI24A yang sering terlambat?\nA. Emill\nB. Jose\nC. Umam\nD. Arjuna",
-                "2. Siapa nama asli Kiting?\nA. Mamat\nB. Rizky\nC. Daffa\nD. Majid",
-                "3. Warna kampus bina insani ialah?\nA. Merah\nB. Hijau\nC. Biru\nD. Kuning",
-                "4. Apa Ibukota Jawa Tengah?\nA. Tegal\nB. Ambon\nC. Samarinda\nD. Semarang",
-                "5. Depan kampus Bina Insani ada?\nA. Halte\nB. Fly Over\nC. Foto Copy\nD. Pos Satpam",
-                "6. Berapa harga pakrir motor Univ Bina Insani?\nA. 2k\nB. 3k\nC. 4k\nD.5k",
-                "7. Rizky Surya biasa dipanggil?\nA. Copet\nB. Tompel\nC. Abut\nD. Pendo",
-                "8. Siapa penemu internet?\nA. Levi Ackerman\nB. \nC.Senku Tim Berners-Lee\nD. Sherlock Holmes",
-                "9. Berapa jumlah benua di dunia?\nA. 6\nB. 5\nC. 8\nD. 7",
-                "10. Siapa nama dosen Algoritma dan Pemrograman TI24 di semester 2?\nA. Pak Jajang\nB. Bu Rita\nC. Pak Solikin\nD. Pak Imam"
+                "1. Apa Ibukota Jawa Tengah?\nA. Tegal\nB. Ambon\nC. Samarinda\nD. Semarang",
+                "2. Warna kampus bina insani ialah?\nA. Merah\nB. Hijau\nC. Biru\nD. Kuning",
+                "3. Siapa mahasiswa TI24A yang sering terlambat?\nA. Emill\nB. Jose\nC. Umam\nD. Arjuna",
+                "4. Siapa nama asli Kiting?\nA. Mamat\nB. Rizky\nC. Daffa\nD. Majid",
+                "5. Berapa jumlah benua di dunia?\nA. 6\nB. 5\nC. 8\nD. 7",
+                "6. Depan kampus Bina Insani ada?\nA. Halte\nB. Fly Over\nC. Foto Copy\nD. Pos Satpam",
+                "7. Berapa harga pakrir motor Univ Bina Insani?\nA. 2k\nB. 4k\nC. 3k\nD. 5k",
+                "8. Rizky Surya biasa dipanggil?\nA. Copet\nB. Tompel\nC. Abut\nD. Pendo",
+                "9. Output dari gerbang logika OR adalah 1 jika?\nA. Semua input 0\nB. Input berbeda\nC. Semua input 1\nD. Salah satu input 1",
+                "10. Siapa nama dosen Algoritma dan Pemrograman II TI24?\nA. Pak Jajang\nB. Bu Rita\nC. Pak Solikin\nD. Pak Imam"
         };
 
         char[] jawabanBenar = { 'C', 'C', 'B', 'D', 'B', 'B', 'A', 'C', 'D', 'D' };
@@ -87,7 +87,5 @@ public class QuizApp {
         } else {
             System.out.println("Oke! Sampai jumpa di kuis berikutnya!");
         }
-
-        input.close();
     }
 }
