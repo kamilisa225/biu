@@ -1,18 +1,136 @@
-print("=== Program Input Nilai Mahasiswa ===")
-banyakmhs = int(input("Masukkan jumlah mahasiswa: "))
+///Main
+package com.mycompany.loginappfileio;
 
-for m in range(banyakmhs):
-    print(f"Mahasiswa ke-{m + 1}")
-    nama = input("Nama: ")
-    nim = input("NIM: ")
-    banyakmk = int(input("Jumlah mata kuliah: "))
-    
-    total_nilai = 0
-    for n in range(banyakmk):
-        nilai = float(input(f"Nilai mata kuliah ke-{n + 1}: "))
-        total_nilai += nilai
-    
-    rata_rata = total_nilai / banyakmk
-    print(f"Rata-rata nilai: {rata_rata:.2f}")
+import java.io.*;
+import java.util.*;
 
-print("Program selesai!")
+public class Main {
+    private static final String FILE_NAME = "users.txt";
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args){
+        while (true) {
+            System.out.println("=== MENU LOGIN ===");
+            System.out.println("1. Daftar");
+            System.out.println("2. Login");
+            System.out.println("3. Lihat Semua");
+            System.out.println("4. Keluar");
+            System.out.print("Pilih menu: ");
+            int pilihan = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (pilihan) {
+                case 1 -> daftarUserBaru();
+                case 2 -> prosesLogin();
+                case 3 -> bacaSemuaUser();
+                case 4 -> {
+                    System.out.println("Terima kasih!");
+                    return;
+                }
+                default -> System.out.println("Pilihan tidak valid.");
+            }
+        }
+    }
+
+    public static void daftarUserBaru() {
+        System.out.print("Masukkan username: ");
+        String username = scanner.nextLine();
+        System.out.print("Masukkan password: ");
+        String password = scanner.nextLine();
+
+        User user = new User(username, password);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
+            writer.write(user.toFileFormat());
+            writer.newLine();
+            System.out.println("User berhasil ditambahkan.");
+        } catch (IOException e) {
+            System.out.println("Gagal menyimpan user: " + e.getMessage());
+        }
+    }
+
+    public static void prosesLogin() {
+        System.out.print("Masukkan username: ");
+        String username = scanner.nextLine();
+        System.out.print("Masukkan password: ");
+        String password = scanner.nextLine();
+
+        boolean loginBerhasil = false;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                User user = User.fromFileFormat(line);
+                if (user != null && user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                    loginBerhasil = true;
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Gagal membaca file user: " + e.getMessage());
+        }
+
+        if (loginBerhasil) {
+            System.out.println("Login berhasil. Selamat datang, " + username + "!");
+        } else {
+            System.out.println("Login gagal. Username atau password salah.");
+        }
+    }
+
+    public static void bacaSemuaUser() {
+        File file = new File(FILE_NAME);
+        if (!file.exists()) {
+            System.out.println("Belum ada user yang terdaftar.");
+            return;
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String baris;
+            System.out.println("\nDaftar user:");
+            while ((baris = reader.readLine()) != null) {
+                User user = User.fromFileFormat(baris);
+                if (user != null) {
+                    System.out.println("- " + user.getUsername());
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Gagal membaca file: " + e.getMessage());
+        }
+    }
+}
+
+///USER
+package com.mycompany.loginappfileio;
+
+public class User {
+    private final String username;
+    private final String password;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String toFileFormat() {
+        return username + "," + password;
+    }
+
+    public static User fromFileFormat(String line) {
+        String[] parts = line.split(",");
+        if (parts.length == 2) {
+            return new User(parts[0], parts[1]);
+        }
+        return null;
+    }
+}
+
+
+
+
