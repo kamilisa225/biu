@@ -1,50 +1,53 @@
-<?php include 'db.php'; ?>
 <!DOCTYPE html>
-<html lang="id">
-    <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Buku</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    </head>
-    <body class="bg-light">
-    <div class="container py-5">
-        <h2 class="text-center mb-4">📚 Data Buku</h2>
-        <div class="text-end mb-3">
-        <a href="tambah.php" class="btn btn-success">+ Tambah Buku</a>
+    <title>Pelanggan</title>
+</head>
+<body>
+    <?php include 'header.php'?>
+    <div class="container mt -4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="display-6">Data Pelanggan</h4>
+            </div>
+            <div class="card-body">
+                <a href="addPelanggan.php" class="btn btn-primary mb-3 btn-sm">Tambah Pelanggan</a>
+                <table class="table table hover">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Pelanggan</th>
+                            <th>Alamat</th>
+                            <th>Telepon</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        include '../koneksi.php';
+                        $query = "SELECT * from pelanggan";
+                        $result = mysqli_query ($koneksi,$query);
+                        $no = 1;
+                        while ($data = mysqli_fetch_assoc($result)){
+                        ?>
+                            <tr>
+                                <td><?php echo $no++?></td>
+                                <td><?php echo $data['namaPelanggan'];?></td>
+                                <td><?php echo $data['alamatPelanggan'];?></td>
+                                <td><?php echo $data['hpPelanggan'];?></td>
+                                
+                            </tr>
+                        <?php}
+                        ?>
+                        
+                    </tbody>
+                </table>
+            </div>
         </div>
-
-        <table class="table table-striped table-bordered shadow-sm">
-        <thead class="table-dark">
-            <tr>
-            <th>No</th>
-            <th>Judul</th>
-            <th>Penulis</th>
-            <th>Penerbit</th>
-            <th>Tahun</th>
-            <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $no = 1;
-            $result = mysqli_query($conn, "SELECT * FROM buku ORDER BY id DESC");
-            while ($row = mysqli_fetch_assoc($result)) :
-            ?>
-            <tr>
-            <td><?= $no++; ?></td>
-            <td><?= htmlspecialchars($row['judul']); ?></td>
-            <td><?= htmlspecialchars($row['penulis']); ?></td>
-            <td><?= htmlspecialchars($row['penerbit']); ?></td>
-            <td><?= htmlspecialchars($row['tahun_terbit']); ?></td>
-            <td>
-                <a href="edit.php?id=<?= $row['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
-                <a href="hapus.php?id=<?= $row['id']; ?>" onclick="return confirm('Yakin hapus buku ini?');" class="btn btn-danger btn-sm">Hapus</a>
-            </td>
-            </tr>
-            <?php endwhile; ?>
-        </tbody>
-        </table>
     </div>
+    
+    
 </body>
 </html>
